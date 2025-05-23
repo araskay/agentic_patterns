@@ -1,4 +1,3 @@
-
 from openai import OpenAI
 from dotenv import load_dotenv
 from typing import List
@@ -112,7 +111,28 @@ class EssayWriter:
 
 
 if __name__ == "__main__":
-    essay = EssayWriter().write_essay(topic="Accelerated magnetic resonance imaging (MRI)", verbose=True)
-    print("\nEssay:\n")
-    print(essay)
+    writer = EssayWriter()
+    
+    print("Welcome to the Essay Writer!")
+    print("Enter a topic to generate an essay, e.g. 'The impact of climate change on biodiversity'.")
+    print("Type ':q' to quit the program.")
+    
+    while True:
+        topic = input("\nEnter topic, or ':q' to quit: ").strip()
+        
+        if topic.lower() == ':q':
+            print("Goodbye!")
+            break
+            
+        if not topic:
+            print("Please enter a valid topic")
+            continue
+            
+        try:
+            print("\nGenerating essay... Please wait...")
+            essay = writer.write_essay(topic=topic, verbose=True)
+            print("\nEssay:\n")
+            print(essay)
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
 
