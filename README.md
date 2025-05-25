@@ -25,6 +25,9 @@ workflow:
     more capable of handling coding questions.
 
 ## 3. Parallelization
+A task is broken down into multiple *independent* subtasks. Each subtask is processed in parallel using a LLM. Subtask results are aggregated to generate the final response.
+
+`parallelization_development_planner.py` contains an example where parallelization is used to create a development plan. First, multiple (sub)plans are created by instructing LLMs to follow various personas (e.g., data scientist, software engineer, product manager, UX designer). These subplans are subsequently aggregated by an LLM to create the final plan.
 
 # Agentic patterns
 ## 1. Reflection
