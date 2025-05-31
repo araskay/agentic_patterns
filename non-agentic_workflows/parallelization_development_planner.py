@@ -1,5 +1,6 @@
 from openai import OpenAI
 import asyncio
+from typing import List, Dict
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -24,7 +25,7 @@ class DevelopmentPlanner:
         ]
         self.plans = {}
 
-    async def _get_response(self, input: list, model_name: str = "gpt-4o-mini") -> str:
+    async def _get_response(self, input: List[Dict[str, str]], model_name: str = "gpt-4o-mini") -> str:
         """
         Get a response from the OpenAI Response API.
         """
@@ -93,16 +94,9 @@ class DevelopmentPlanner:
         return aggregated_plan
     
 if __name__ == "__main__":
-    async def main():
+    async def main(requirements: str):
         planner = DevelopmentPlanner()
-        requirements = """
-            Build an AI agent that can create SQL queries from natural language.
-            The agent should be able to understand user queries in the context of their data,
-            which may include tables, columns, and relationships, stored in a database.
-            The agent should generate SQL queries,
-            and allow the user to execute them against the database.
-        """
-        
+
         aggregated_plan = await planner.generate_plan(requirements)
 
         print("Development Plan for Requirements:")
@@ -115,4 +109,11 @@ if __name__ == "__main__":
         print(aggregated_plan)
 
     # Run the async main function
-    asyncio.run(main())
+    requirements = """
+        Build an AI agent that can create SQL queries from natural language.
+        The agent should be able to understand user queries in the context of their data,
+        which may include tables, columns, and relationships, stored in a database.
+        The agent should generate SQL queries,
+        and allow the user to execute them against the database.
+    """    
+    asyncio.run(main(requirements=requirements))

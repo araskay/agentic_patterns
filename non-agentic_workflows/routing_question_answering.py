@@ -1,6 +1,6 @@
 from openai import OpenAI
-from pydantic import BaseModel
 from dotenv import load_dotenv
+from typing import List, Dict
 
 load_dotenv()
 
@@ -19,7 +19,7 @@ class QuestionAnswering:
     def __init__(self):
         self.client = OpenAI()
     
-    def _get_response(self, input: list, model_name: str) -> str:
+    def _get_response(self, input: List[Dict[str, str]], model_name: str) -> str:
         """
         Get a response from the OpenAI Response API.
         """
