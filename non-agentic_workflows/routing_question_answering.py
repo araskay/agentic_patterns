@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 class QuestionAnswering:
     """
     workflow:
@@ -19,19 +18,8 @@ class QuestionAnswering:
     """
     def __init__(self):
         self.client = OpenAI()
-
-    def _get_structured_response(self, input: str, model_name: str = "gpt-4o-mini") -> str:
-        """
-        Get a response from the OpenAI Response API.
-        """
-        response = self.client.responses.parse(
-            model=model_name,
-            input=input,
-            text_format=QueryType
-        )
-        return response.output_parsed
     
-    def _get_response(self, input: str, model_name: str) -> str:
+    def _get_response(self, input: list, model_name: str) -> str:
         """
         Get a response from the OpenAI Response API.
         """
@@ -61,7 +49,7 @@ class QuestionAnswering:
                 "content": query
             }
         ]
-        response = self._get_structured_response(input=input)
+        response = self._get_response(input=input, model_name="gpt-4o-mini")
         return response
     
     def _general_model(self, query: str) -> str:
@@ -115,21 +103,14 @@ class QuestionAnswering:
         query_type = self._router(query)
 
         if verbose:
-            print(f"Query Type: {query_type.query_type}")
+            print(f"Query Type: {query_type}")
         
-        if query_type.query_type == "general":
+        if query_type == "general":
             return self._general_model(query)
-        elif query_type.query_type == "coding":
+        elif query_type == "coding":
             return self._code_model(query)
         else:
             raise ValueError("Invalid query type")
-
-class QueryType(BaseModel):
-    """
-    QueryType is a Pydantic model that represents the type of query.
-    It can be either a general question or a coding question.
-    """
-    query_type: str
     
 if __name__ == "__main__":
     qa = QuestionAnswering()
