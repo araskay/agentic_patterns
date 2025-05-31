@@ -31,6 +31,9 @@ A task is broken down into multiple *independent* subtasks. Each subtask is proc
 
 # Agentic patterns
 ## 1. Reflection
+An agent examines its own output and imporves the response based on the critique iteratively.
+
+`reflection_coding.py` contains an example where reflection is used to generate high quality code. The agent prompts a LLM to generate code based on the user query (Genration). The output is subsequently examined in another LLM prompt for correctness and efficiency, where the LLM is instructed to return 'CORRECT' if the code is good, or provide specific feedback for improvement (Reflection). The process of generation-reflection is repeated until "correct" code is generated or a maximum number of iterations reached.
 
 ## 2. Tool use
 
