@@ -1,7 +1,6 @@
 from openai import OpenAI
 from dotenv import load_dotenv
 from pydantic import BaseModel
-from typing import List, Dict
 
 load_dotenv()
 
@@ -24,6 +23,15 @@ class Coding:
         self.client = OpenAI()
     
     def write_code(self, prompt: str) -> str:
+        """
+        Generate code based on a prompt.
+
+        Args:
+            prompt: The programming task description
+
+        Returns:
+            str: The generated code
+        """
         developer_prompt = """
             You are a skilled programmer. Write code based on the given prompt.
             If feedback is provided, use it to improve the code.
@@ -47,6 +55,16 @@ class Coding:
         return response.output_text
 
     def examine_code(self, prompt: str, code: str) -> Feedback:
+        """
+        Examine code for correctness and efficiency.
+
+        Args:
+            prompt: The original programming task
+            code: The code to examine
+
+        Returns:
+            Feedback: Object containing correctness status and feedback
+        """
         developer_prompt = """
             You are a code reviewer. Examine the code for correctness and efficiency.
             Make sure the code meets the following criteria:
@@ -77,7 +95,18 @@ class Coding:
         )
         return response.output_parsed
 
-    def generate_code(self, prompt: str, max_iterations: int = 3, verbose:bool = False) -> str:
+    def generate_code(self, prompt: str, max_iterations: int = 3, verbose: bool = False) -> str:
+        """
+        Generate code with iterative feedback and improvements.
+
+        Args:
+            prompt: The programming task description
+            max_iterations: Maximum number of improvement attempts
+            verbose: Whether to print debug information
+
+        Returns:
+            str: The final generated code
+        """
         current_prompt = prompt
         
         for i in range(max_iterations):

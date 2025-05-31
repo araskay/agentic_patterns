@@ -1,6 +1,6 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-from typing import List
+from typing import List, Dict
 
 load_dotenv()
 
@@ -14,7 +14,7 @@ class EssayWriter:
     def __init__(self):
         self.client = OpenAI()
 
-    def _get_response(self, input: List, model_name: str="gpt-4o-mini") -> List:
+    def _get_response(self, input: List[Dict[str, str]], model_name: str="gpt-4o-mini") -> str:
         """
         Get a response from the OpenAI Response API.
         """
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     writer = EssayWriter()
     
     print("Welcome to the Essay Writer!")
-    print("Enter a topic to generate an essay, e.g. 'The impact of climate change on biodiversity'.")
+    print("Enter a topic to generate an essay, e.g. 'Accelerated magnetic resonance imaging'.")
     print("Type ':q' to quit the program.")
     
     while True:

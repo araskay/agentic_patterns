@@ -24,7 +24,7 @@ class DevelopmentPlanner:
         ]
         self.plans = {}
 
-    async def _get_response(self, input: str, model_name: str = "gpt-4o-mini") -> str:
+    async def _get_response(self, input: list, model_name: str = "gpt-4o-mini") -> str:
         """
         Get a response from the OpenAI Response API.
         """
