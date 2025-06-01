@@ -1,2 +1,6 @@
 openai
 python-dotenv
+sqlalchemy
+duckdb
+duckdb-engine
+kagglehub # used for sample datasets
