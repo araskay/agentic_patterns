@@ -222,10 +222,6 @@ class QueryWriter:
                 {"role": "user", "content": question}
             ]
             response_text = self._get_response(input=input, model_name='gpt-4o-mini')
-
-            chat_history.append({"role": "developer", "content": self._get_developer_prompt(chat_history)})
-            chat_history.append({"role": "user", "content": question})
-            chat_history.append({"role": "assistant", "content": response_text})
             
             if verbose:
                 print(f"\n--- Iteration {i+1} ---")
@@ -234,6 +230,10 @@ class QueryWriter:
                     print(f"{entry['role']}: {entry['content']}")
                 print("\n--- LLM Response ---")
                 print(f"Response {i+1}: {response_text}")
+
+            #chat_history.append({"role": "developer", "content": self._get_developer_prompt(chat_history)})
+            #chat_history.append({"role": "user", "content": question})
+            chat_history.append({"role": "assistant", "content": response_text})
             
             # Check if the response contains a final answer
             final_answer = self._extract_final_answer(response_text)
