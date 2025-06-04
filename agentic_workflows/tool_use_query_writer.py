@@ -11,6 +11,19 @@ load_dotenv()
 # max iterations for the agent
 MAX_ITERATIONS = 30
 
+"""
+workflow:
+    The agent has access to a list of tools and their descriptions.
+    These tools enable the agent to interact with the database.
+    The agent will use these tools to answer the user's question
+    by going through an iterative process of reasoning and action (the "ReAct" pattern)
+    as follows:
+    1. Datermine if I need to use a tool to answer the question.
+    2. If I need to use a tool, I will use the tool to get the information I need.
+       Add the tool's output to the chat history. Go back to step 1 for the next iteration.
+    3. If I do not need to use a tool, I will provide the final answer based on the information I have.
+"""
+
 class SQLTool:
     """Base class for SQL tools"""
     def __init__(self, engine: Engine):

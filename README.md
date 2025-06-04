@@ -36,6 +36,18 @@ An agent examines its own output and imporves the response based on the critique
 `reflection_coding.py` contains an example where reflection is used to generate high quality code. The agent prompts a LLM to generate code based on the user query (Genration). The output is subsequently examined in another LLM prompt for correctness and efficiency, where the LLM is instructed to return 'CORRECT' if the code is good, or provide specific feedback for improvement (Reflection). The process of generation-reflection is repeated until "correct" code is generated or a maximum number of iterations reached.
 
 ## 2. Tool use
+An LLM uses tools (functions, APIs, etc.) to interact with the outside world.
+
+`tool_use_query_writer.py` includes an example where tool use is used by the agent to write SQL queries from natural language.
+The agent has access to a list of tools and their descriptions.
+These tools enable the agent to interact with the database.
+The agent will use these tools to answer the user's question
+by going through an iterative process of reasoning and action (the "ReAct" pattern)
+as follows:
+1. Datermine if I need to use a tool to answer the question.
+2. If I need to use a tool, I will use the tool to get the information I need.
+    Add the tool's output to the chat history. Go back to step 1 for the next iteration.
+3. If I do not need to use a tool, I will provide the final answer based on the information I have.
 
 ## 3. Planning
 
