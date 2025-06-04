@@ -198,6 +198,9 @@ class QueryWriter:
 
             ... (repeat Thought/Action/Observation as many times as needed)
 
+            Observeration is the result of the action, which will be provided by the user after running the tool.
+            Do NOT attempt to guess the observation.            
+
             When you have a response to say to the Human, or if you do not need to use a tool, you MUST use the format:
 
             ```
