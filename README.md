@@ -3,6 +3,9 @@ Sample implementations of common agentic and non-agentic patterns from scratch
 
 # Non-agentic patterns
 ## 1. Prompt chaining
+
+![Prompt Chaining Pattern](Prompt%20chaining.png)
+
 The output of one LLM sequentially feeds into the input of the next.
 
 `prompt_chaining_essay_writer.py` contains an example where prompt chaining is used to compose as essay using the following workflow:
