@@ -4,3 +4,4 @@ sqlalchemy
 duckdb
 duckdb-engine
 kagglehub # used for sample datasets
+exa_py # used for web search functionality
