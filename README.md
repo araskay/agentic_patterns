@@ -3,6 +3,9 @@ Sample implementations of common agentic and non-agentic patterns from scratch
 
 # Non-agentic patterns
 ## 1. Prompt chaining
+
+![Prompt Chaining Pattern](agentic%20patterns%20-%20prompt%20chaining.png)
+
 The output of one LLM sequentially feeds into the input of the next.
 
 `prompt_chaining_essay_writer.py` contains an example where prompt chaining is used to compose as essay using the following workflow:
@@ -11,6 +14,9 @@ The output of one LLM sequentially feeds into the input of the next.
 3. write an essay based on the expanded outline
 
 ## 2. Routing
+
+![Routing Pattern](agentic%20patterns%20-%20Routing.png)
+
 A routing LLM examines user prompt and sends it to the most appropriate LLM to process.
 
 `routing_question_answering.py` contains an example where routing is used to send user's query to the best LLM. For general questions, a cheaper and faster model, namely `gpt-4o-mini` is used. For coding questions the `gpt-4.1`, which is more suitable for code generation but slower and more expensive, is used.
@@ -25,12 +31,18 @@ workflow:
     more capable of handling coding questions.
 
 ## 3. Parallelization
+
+![Parallelization Pattern](agentic%20patterns%20-%20parallelization.png)
+
 A task is broken down into multiple *independent* subtasks. Each subtask is processed in parallel using a LLM. Subtask results are aggregated to generate the final response.
 
 `parallelization_development_planner.py` contains an example where parallelization is used to create a development plan. First, multiple (sub)plans are created by instructing LLMs to follow various personas (e.g., data scientist, software engineer, product manager, UX designer). These subplans are subsequently aggregated by an LLM to create the final plan.
 
 # Agentic patterns
 ## 1. Reflection
+
+![Reflection Pattern](agentic%20patterns%20-%20reflection.png)
+
 An agent examines its own output and imporves the response based on the critique iteratively.
 
 `reflection_coding.py` contains an example where reflection is used to generate high quality code. The agent prompts a LLM to generate code based on the user query (Genration). The output is subsequently examined in another LLM prompt for correctness and efficiency, where the LLM is instructed to return 'CORRECT' if the code is good, or provide specific feedback for improvement (Reflection). The process of generation-reflection is repeated until "correct" code is generated or a maximum number of iterations reached.
