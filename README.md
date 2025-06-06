@@ -95,6 +95,9 @@ There are two common multi-agent patterns:
 2. Swarm pattern
 ![Multi-agent Swarm Pattern](agentic%20patterns%20-%20Multi-agent%20swarm.png)
 
+# Combining patterns
+It is important to note that these patterns are not fixed rules but should rather be viewed as flexible design building blocks. In practice, patterns are often customized and combined to create agentic systems. A orchestrator agent may use reflection and the work agents may use tools.
+
 # Running the code
 ## Environment Variables
 The following environment variables need to be set before running the code:
