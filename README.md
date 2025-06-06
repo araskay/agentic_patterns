@@ -48,6 +48,9 @@ An agent examines its own output and imporves the response based on the critique
 `reflection_coding.py` contains an example where reflection is used to generate high quality code. The agent prompts a LLM to generate code based on the user query (Genration). The output is subsequently examined in another LLM prompt for correctness and efficiency, where the LLM is instructed to return 'CORRECT' if the code is good, or provide specific feedback for improvement (Reflection). The process of generation-reflection is repeated until "correct" code is generated or a maximum number of iterations reached.
 
 ## 2. Tool use
+
+![Tool Use Pattern](agentic%20patterns%20-%20tool%20use.png)
+
 An LLM uses tools (functions, APIs, etc.) to interact with the outside world.
 
 `tool_use_query_writer.py` includes an example where tool use is used by the agent to write SQL queries from natural language.
@@ -61,6 +64,29 @@ as follows:
     Add the tool's output to the chat history. Go back to step 1 for the next iteration.
 3. If I do not need to use a tool, I will provide the final answer based on the information I have.
 
-## 3. Planning
+## 3. Orchestrator-Worker
+![Orchestrator-Worker Pattern](agentic%20patterns%20-%20orchestrator-worker.png)
+
+An "orchestrator" or "planner" LLM breaks down a complex task into a *dynamic* list of subtasks. Each subtask is deligated to an agent to complete. A "synthesizer" LLM collects the results from workers and synthesizes the final output.
+
+`orchestrator-worker_research_agent.py` includes an example where the orchestrator-worker pattern is used to conduct research on a given topic, using the following workflow:
+1. User provides a research topic
+2. Orchestrator creates a research plan including a list of subtasks
+   and deligates subtasks to workers
+3. Workers execute subtasks in parallel (when dependencies allow)
+4. Synthesizer collects and combines all results into a final output
+
+The main difference between this pattern and Parallelizatoin is that the agent has autonomy in creating the list of subtasks.
 
 ## 4. Multi-agent
+Multiple agents collaborate to achieve a goal. It is common for the agents to assume a distinct role or persona (project manger, UX designer, coder, tester, etc.) Agents generally operate in an autonomous manner.
+
+There are two common multi-agent patterns:
+
+1. Coordinator / manager pattern
+![Multi-agent Coordinator Pattern](agentic%20patterns%20-%20Multi-agent%20coordinator%20approach.png)
+
+2. Swarm pattern
+![Multi-agent Swarm Pattern](agentic%20patterns%20-%20Multi-agent%20swarm.png)
+
+
