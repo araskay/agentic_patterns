@@ -13,9 +13,10 @@ load_dotenv()
 """
 Workflow:
 1. User provides a research topic
-2. Orchestrator creates a research plan with subtasks
+2. Orchestrator creates a research plan including a list of subtasks
+   and deligates subtasks to workers
 3. Workers execute subtasks in parallel (when dependencies allow)
-4. Synthesizer combines all results into a final output
+4. Synthesizer collects and combines all results into a final output
 """
 
 class TaskStatus(Enum):
