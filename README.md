@@ -1,5 +1,11 @@
 # Agentic (and non-agentic) patterns
-Sample implementations of common agentic and non-agentic patterns from scratch
+Not all LLM workflows are agentic. Genrally speaking, a workflow is a series of steps to achieve a task. For example, an expense approval workflow may be based on simple rules: “if it is a food expense and less than $50, automatically approve. If more than $50, send to payroll for review”.
+
+Some workflows use LLMs and are often referred to as **AI workflows**. AI workflows can be agentic or non-agentic. In **non-agentic workflows**, the LLM is prompted with an input and generates an output. For example, a text summarization workflow gets a piece of text and returns a shorter summary.
+
+**Agentic workflows** on the other hand often have more autonomy and consist of a series of steps that are dynamically executed by the agent. This requires a reasoning capacity. AI agents often have access to tools that enable them to interact with the world to gather information and accomplish tasks. These agents also have a memory component to enable remembering the context in which previous steps took place to identify the next steps.
+
+This repository includes sample implementations of common agentic and non-agentic patterns. To make it as general as possible, and independent form any specific platform such as Langchain, these patterns are implemented from scratch.
 
 # Non-agentic patterns
 ## 1. Prompt chaining
